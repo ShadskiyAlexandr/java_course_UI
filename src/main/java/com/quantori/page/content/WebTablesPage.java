@@ -194,9 +194,7 @@ public class WebTablesPage extends ContentBasePage {
                     break;
             }
 
-            System.out.printf("Expected value %s in %s but actual is %s%n", expectedValue, inputName, actualValue);
-
-            assertThat(String.format("Expected value %s in %s but actual is %s", expectedValue, inputName, actualValue), expectedValue, is(equalTo(actualValue)));
+            assertThat(String.format("Expected value %s in %s cell, but actual is %s", expectedValue, inputName, actualValue), expectedValue, is(equalTo(actualValue)));
         }
     }
 
