@@ -26,7 +26,7 @@ public class ModalDialogsPage extends ContentBasePage{
     }
     public ModalDialogsPage clickShowLargeModalWindow() {
         showLargeModalButton.click();
-        wait10second.until(ExpectedConditions.visibilityOf(modalWindow));
+        wait5second.until(ExpectedConditions.visibilityOf(modalWindow));
         return this;
     }
 

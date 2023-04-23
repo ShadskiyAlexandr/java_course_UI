@@ -58,7 +58,7 @@ public class WebTablesPage extends ContentBasePage {
         targetRow
                 .findElement(By.cssSelector("[title='Edit']"))
                 .click();
-        wait10second.until(ExpectedConditions.visibilityOf(userForm));
+        wait5second.until(ExpectedConditions.visibilityOf(userForm));
         return this;
     }
 
@@ -72,7 +72,7 @@ public class WebTablesPage extends ContentBasePage {
 
     public WebTablesPage clickAddRow() {
         addButton.click();
-        wait10second.until(ExpectedConditions.visibilityOf(userForm));
+        wait5second.until(ExpectedConditions.visibilityOf(userForm));
         return this;
     }
 

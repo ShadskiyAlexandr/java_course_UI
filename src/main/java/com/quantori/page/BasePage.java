@@ -17,11 +17,11 @@ abstract public class BasePage {
     protected WebDriver driver;
     protected String baseUrl;
 
-    protected WebDriverWait wait10second;
+    protected WebDriverWait wait5second;
 
     public BasePage(WebDriver driver) {
         loadProperties();
-        this.wait10second = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.wait5second = new WebDriverWait(driver, Duration.ofSeconds(5));
         baseUrl = props.getProperty("base.url");
         this.driver = driver;
         PageFactory.initElements(driver, this);
