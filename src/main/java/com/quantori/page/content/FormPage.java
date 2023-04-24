@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.util.Random;
+
 public class FormPage extends ContentBasePage{
 
     @FindBy(id = "firstName")
@@ -85,7 +87,9 @@ public class FormPage extends ContentBasePage{
     }
 
     public enum Gender{
-        Male("Male");
+        Male("Male"),
+        Female("Female"),
+        Other("Other");
 
         private String name;
 
@@ -96,9 +100,14 @@ public class FormPage extends ContentBasePage{
         public String getName() {
             return name;
         }
-    }
 
-    private WebElement getSubmitButton() {
-        return submitButton;
+        public static String getRandomGender() {
+
+            Random random = new Random();
+
+            Gender[] genders = Gender.values();
+            return genders[random.nextInt(genders.length)].getName();
+
+        }
     }
 }

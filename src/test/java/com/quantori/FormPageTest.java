@@ -4,7 +4,7 @@ import com.quantori.base.BaseTest;
 import com.quantori.page.content.FormPage;
 import org.junit.jupiter.api.Test;
 
-import static com.quantori.page.content.FormPage.Gender.Male;
+import static com.quantori.page.content.FormPage.Gender.getRandomGender;
 
 public class FormPageTest extends BaseTest {
 
@@ -15,7 +15,7 @@ public class FormPageTest extends BaseTest {
                 .enterMobilePhone(faker.phoneNumber().subscriberNumber(10))
                 .enterFirstName(faker.name().firstName())
                 .enterLastName(faker.name().lastName())
-                .setGenderRadioButton(Male.getName())
+                .setGenderRadioButton(getRandomGender())
                 .jsClickBySubmitButton();
     }
 
@@ -25,7 +25,7 @@ public class FormPageTest extends BaseTest {
                 .openUrl()
                 .enterFirstName(faker.name().firstName())
                 .enterLastName(faker.name().lastName())
-                .setGenderRadioButton(Male.getName())
+                .setGenderRadioButton(getRandomGender())
                 .enterMobilePhone(faker.phoneNumber().subscriberNumber(10))
                 .enterEmail(faker.internet().emailAddress())
                 .jsClickBySubmitButton();
