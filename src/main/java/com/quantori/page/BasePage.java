@@ -1,5 +1,6 @@
 package com.quantori.page;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -33,5 +34,11 @@ abstract public class BasePage {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    protected BasePage decreaseZoom(double zoom) {
+        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        executor.executeScript(String.format("document.body.style.zoom = '%s'", zoom));
+        return this;
     }
 }

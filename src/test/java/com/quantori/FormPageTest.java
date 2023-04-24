@@ -12,11 +12,11 @@ public class FormPageTest extends BaseTest {
     void submitOnlyMandatoryFieldsTest() {
         new FormPage(driver)
                 .openUrl()
-                .enterMobilePhone(faker.phoneNumber().phoneNumber())
+                .enterMobilePhone(faker.phoneNumber().subscriberNumber(10))
                 .enterFirstName(faker.name().firstName())
                 .enterLastName(faker.name().lastName())
                 .setGenderRadioButton(Male.getName())
-                .clickSubmitButton();
+                .jsClickBySubmitButton();
     }
 
     @Test
@@ -26,8 +26,8 @@ public class FormPageTest extends BaseTest {
                 .enterFirstName(faker.name().firstName())
                 .enterLastName(faker.name().lastName())
                 .setGenderRadioButton(Male.getName())
-                .enterMobilePhone(faker.phoneNumber().phoneNumber())
+                .enterMobilePhone(faker.phoneNumber().subscriberNumber(10))
                 .enterEmail(faker.internet().emailAddress())
-                .clickSubmitButton();
+                .jsClickBySubmitButton();
     }
 }

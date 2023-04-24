@@ -1,9 +1,11 @@
 package com.quantori.page.content;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class FormPage extends ContentBasePage{
 
@@ -19,8 +21,11 @@ public class FormPage extends ContentBasePage{
     @FindBy(css = "[id='submit']")
     private WebElement submitButton;
 
-    @FindBy(css = "[id='userEmail'")
+    @FindBy(css = "[id='userEmail']")
     private static WebElement emailInput;
+
+    @FindBy(css = "[class='modal-content']")
+    private static WebElement thanksForm;
 
     public FormPage(WebDriver driver) {
         super(driver);
@@ -33,7 +38,9 @@ public class FormPage extends ContentBasePage{
     }
 
     public FormPage setGenderRadioButton (String name) {
-        driver.findElement(By.xpath("//input[@name='gender'] [@value='" + name + "']"));
+        WebElement radioBtn = driver.findElement(By.xpath("//input[@name='gender'] [@value='" + name + "']/following-sibling::label"));
+        wait5second.until(ExpectedConditions.elementToBeClickable(radioBtn));
+        radioBtn.click();
         return this;
     }
 
@@ -59,6 +66,21 @@ public class FormPage extends ContentBasePage{
 
     public FormPage clickSubmitButton() {
         submitButton.click();
+
+        wait5second.until(ExpectedConditions.visibilityOf(thanksForm));
+        return this;
+    }
+    public FormPage jsClickBySubmitButton() {
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        js.executeScript("arguments[0].click();", submitButton);
+
+        wait5second.until(ExpectedConditions.visibilityOf(thanksForm));
+        return this;
+    }
+
+    @Override
+    public FormPage decreaseZoom(double zoom) {
+        super.decreaseZoom(zoom);
         return this;
     }
 
@@ -74,5 +96,9 @@ public class FormPage extends ContentBasePage{
         public String getName() {
             return name;
         }
+    }
+
+    private WebElement getSubmitButton() {
+        return submitButton;
     }
 }
