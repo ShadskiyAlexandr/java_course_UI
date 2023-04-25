@@ -1,9 +1,6 @@
 package com.quantori.page.content;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -67,7 +64,19 @@ public class FormPage extends ContentBasePage{
     }
 
     public FormPage clickSubmitButton() {
-        submitButton.click();
+        boolean clickable = false;
+        double zoom = 0.9;
+
+        while (!clickable) {
+            try {
+                submitButton.click();
+                clickable = true;
+            } catch (ElementClickInterceptedException e) {
+                decreaseZoom(zoom);
+                zoom -= 0.1;
+            }
+
+        }
 
         wait5second.until(ExpectedConditions.visibilityOf(thanksForm));
         return this;
